@@ -15,6 +15,19 @@ pub trait Strings {
     fn after<T: Display>(&self, search: T) -> String;
 
     ///
+    /// Return the remainder of a string after the last occurrence of a given value.
+    ///
+    /// # Usage
+    ///
+    /// ```
+    /// use support::Strings;
+    ///
+    /// "Rust Support Rust".after_last("R");
+    /// // "ust"
+    /// ```
+    fn after_last<T: Display>(&self, search: T) -> String;
+
+    ///
     /// Get the portion of a string before the first occurrence of a given value.
     ///
     /// # Usage
@@ -53,6 +66,22 @@ impl Strings for str {
         }
     }
 
+    fn after_last<T: Display>(&self, search: T) -> String {
+        let search = search.to_string();
+
+        if search.is_empty() {
+            return self.to_string();
+        }
+
+        match self.rfind(&search) {
+            Some(index) => {
+                let start = index + search.len();
+                self[start..].to_string()
+            }
+            None => self.to_string(),
+        }
+    }
+
     fn before<T: Display>(&self, search: T) -> String {
         let search = search.to_string();
 
@@ -74,6 +103,10 @@ impl Strings for str {
 impl Strings for String {
     fn after<T: Display>(&self, search: T) -> String {
         self.as_str().after(search)
+    }
+
+    fn after_last<T: Display>(&self, search: T) -> String {
+        self.as_str().after_last(search)
     }
 
     fn before<T: Display>(&self, search: T) -> String {

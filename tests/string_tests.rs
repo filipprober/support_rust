@@ -17,6 +17,20 @@ mod string_tests {
     }
 
     #[test]
+    fn after_last() {
+        assert_eq!("tte", "yvette".after_last("yve"));
+        assert_eq!("e", "yvette".after_last("t"));
+        assert_eq!("e", "ééé yvette".after_last("t"));
+        assert_eq!("", "yvette".after_last("tte"));
+        assert_eq!("yvette", "yvette".after_last("xxxx"));
+        assert_eq!("yvette", "yvette".after_last(""));
+        assert_eq!("te", "yv0et0te".after_last("0"));
+        assert_eq!("te", "yv0et0te".after_last(0));
+        assert_eq!("te", "yv2et2te".after_last(2));
+        assert_eq!("foo", "----foo".after_last("---"));
+    }
+
+    #[test]
     fn before() {
         assert_eq!("han", "hannah".before("nah"));
         assert_eq!("ha", "hannah".before("n"));
