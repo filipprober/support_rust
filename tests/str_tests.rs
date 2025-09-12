@@ -6,7 +6,9 @@ mod str_tests {
 
     #[test]
     fn reverse() {
-        assert_eq!("support".reverse(), "troppus");
+        assert_eq!("FooBar", "raBooF".reverse());
+        assert_eq!("Teniszütő", "őtüzsineT".reverse());
+        assert_eq!("❤MultiByte☆", "☆etyBitluM❤".reverse());
     }
 }
 
