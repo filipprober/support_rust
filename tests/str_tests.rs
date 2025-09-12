@@ -49,6 +49,23 @@ mod str_tests {
     }
 
     #[test]
+    fn before_last() {
+        assert_eq!("yve", "yvette".before_last("tte"));
+        assert_eq!("yvet", "yvette".before_last("t"));
+        assert_eq!("ééé ", "ééé yvette".before_last("yve"));
+        assert_eq!("", "yvette".before_last("yve"));
+        assert_eq!("yvette", "yvette".before_last("xxxx"));
+        assert_eq!("yvette", "yvette".before_last(""));
+        assert_eq!("yv0et", "yv0et0te".before_last("0"));
+        assert_eq!("yv0et", "yv0et0te".before_last(0));
+        assert_eq!("yv2et", "yv2et2te".before_last(2));
+        assert_eq!("", "".before_last("test"));
+        assert_eq!("", "yvette".before_last("yvette"));
+        assert_eq!("support", "support package".before_last(" "));
+        assert_eq!("yvette", "yvette\tyv0et0te".before_last("\t"));
+    }
+
+    #[test]
     fn reverse() {
         assert_eq!("FooBar", "raBooF".reverse());
         assert_eq!("Teniszütő", "őtüzsineT".reverse());

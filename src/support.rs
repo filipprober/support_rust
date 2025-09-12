@@ -41,6 +41,19 @@ pub trait Strings {
     fn before<T: Display>(&self, search: T) -> String;
 
     ///
+    /// Get the portion of a string before the last occurrence of a given value.
+    ///
+    /// # Usage
+    ///
+    /// ```
+    /// use support::Strings;
+    ///
+    /// "Rust Support".before_last("o");
+    /// // "Rust Supp"
+    /// ```
+    fn before_last<T: Display>(&self, search: T) -> String;
+
+    ///
     /// Reverses the given string.
     ///
     /// # Usage
@@ -95,6 +108,19 @@ impl Strings for str {
         }
     }
 
+    fn before_last<T: Display>(&self, search: T) -> String {
+        let search = search.to_string();
+
+        if search.is_empty() {
+            return self.to_string();
+        }
+
+        match self.rfind(&search) {
+            Some(index) => self[..index].to_string(),
+            None => self.to_string(),
+        }
+    }
+
     fn reverse(&self) -> String {
         self.chars().rev().collect()
     }
@@ -111,6 +137,10 @@ impl Strings for String {
 
     fn before<T: Display>(&self, search: T) -> String {
         self.as_str().before(search)
+    }
+
+    fn before_last<T: Display>(&self, search: T) -> String {
+        self.as_str().before_last(search)
     }
 
     fn reverse(&self) -> String {
