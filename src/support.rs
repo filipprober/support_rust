@@ -15,6 +15,19 @@ pub trait Strings {
     fn after<T: Display>(&self, search: T) -> String;
 
     ///
+    /// Get the portion of a string before the first occurrence of a given value.
+    ///
+    /// # Usage
+    ///
+    /// ```
+    /// use support::Strings;
+    ///
+    /// "Rust Support".before("Support");
+    /// // "Rust "
+    /// ```
+    fn before<T: Display>(&self, search: T) -> String;
+
+    ///
     /// Reverses the given string.
     ///
     /// # Usage
@@ -40,6 +53,19 @@ impl Strings for str {
         }
     }
 
+    fn before<T: Display>(&self, search: T) -> String {
+        let search = search.to_string();
+
+        if search.is_empty() {
+            return self.to_string();
+        }
+
+        match self.find(&search) {
+            Some(index) => self[..index].to_string(),
+            None => self.to_string(),
+        }
+    }
+
     fn reverse(&self) -> String {
         self.chars().rev().collect()
     }
@@ -48,6 +74,10 @@ impl Strings for str {
 impl Strings for String {
     fn after<T: Display>(&self, search: T) -> String {
         self.as_str().after(search)
+    }
+
+    fn before<T: Display>(&self, search: T) -> String {
+        self.as_str().before(search)
     }
 
     fn reverse(&self) -> String {

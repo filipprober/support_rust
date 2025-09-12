@@ -17,6 +17,24 @@ mod string_tests {
     }
 
     #[test]
+    fn before() {
+        assert_eq!("han", "hannah".before("nah"));
+        assert_eq!("ha", "hannah".before("n"));
+        assert_eq!("ééé", "ééé".before("han"));
+        assert_eq!("hannah", "hannah".before("xxxx"));
+        assert_eq!("hannah", "hannah".before(""));
+        assert_eq!("han", "han0nah".before("0"));
+        assert_eq!("han", "han0nah".before(0));
+        assert_eq!("han", "han2nah".before(2));
+        assert_eq!("", "".before(""));
+        assert_eq!("", "a".before("a"));
+        assert_eq!("", "a".before("a"));
+        assert_eq!("foo", "foo@bar.com".before("@"));
+        assert_eq!("foo", "foo@@bar.com".before("@"));
+        assert_eq!("", "@foo@bar.com".before("@"));
+    }
+
+    #[test]
     fn reverse() {
         assert_eq!("FooBar", "raBooF".reverse());
         assert_eq!("Teniszütő", "őtüzsineT".reverse());
