@@ -1,10 +1,11 @@
 [package]
 name = "support"
 description = "A collection of helper methods for Rust projects."
-edition = "2021"
-version = "0.1.0"
+edition = "2024"
+version = "0.2.0"
 readme = "README.md"
 license-file = "LICENSE"
+documentation = "https://docs.rs/support"
 repository = "https://github.com/filipprober/support_rust"
 
 [dependencies]
