@@ -54,6 +54,17 @@ pub trait Strings {
     fn before_last<T: Display>(&self, search: T) -> String;
 
     ///
+    /// Get the portion of a string between two given values.
+    ///
+    /// ```
+    /// use support::Strings;
+    ///
+    /// "Rust Support".between("Ru", "rt");
+    /// // "st Suppo"
+    /// ```
+    fn between<T: Display>(&self, from: T, to: T) -> String;
+
+    ///
     /// Convert the first character of the given string to lower-case.
     ///
     /// ```
@@ -165,6 +176,17 @@ impl Strings for str {
         }
     }
 
+    fn between<T: Display>(&self, from: T, to: T) -> String {
+        let from = from.to_string();
+        let to = to.to_string();
+
+        if from.is_empty() || to.is_empty() {
+            return self.to_string();
+        }
+
+        self.after(from).before_last(to)
+    }
+
     fn lcfirst(&self) -> String {
         let mut c = self.chars();
         match c.next() {
@@ -209,6 +231,10 @@ impl Strings for String {
 
     fn before_last<T: Display>(&self, search: T) -> String {
         self.as_str().before_last(search)
+    }
+
+    fn between<T: Display>(&self, from: T, to: T) -> String {
+        self.as_str().between(from, to)
     }
 
     fn lcfirst(&self) -> String {

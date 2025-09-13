@@ -66,6 +66,24 @@ mod string_tests {
     }
 
     #[test]
+    fn between() {
+        assert_eq!("abc", String::from("abc").between("", "c"));
+        assert_eq!("abc", String::from("abc").between("a", ""));
+        assert_eq!("abc", String::from("abc").between("", ""));
+        assert_eq!("b", String::from("abc").between("a", "c"));
+        assert_eq!("b", String::from("dddabc").between("a", "c"));
+        assert_eq!("b", String::from("abcddd").between("a", "c"));
+        assert_eq!("b", String::from("dddabcddd").between("a", "c"));
+        assert_eq!("nn", String::from("hannah").between("ha", "ah"));
+        assert_eq!("a]ab[b", String::from("[a]ab[b]").between("[", "]"));
+        assert_eq!("foo", String::from("foofoobar").between("foo", "bar"));
+        assert_eq!("bar", String::from("foobarbar").between("foo", "bar"));
+        assert_eq!("234", String::from("12345").between(1, 5));
+        assert_eq!("45", String::from("123456789").between("123", "6789"));
+        assert_eq!("nothing", String::from("nothing").between("foo", "bar"));
+    }
+
+    #[test]
     fn lcfirst() {
         assert_eq!("", String::from("").lcfirst());
         assert_eq!("support", String::from("Support").lcfirst());
