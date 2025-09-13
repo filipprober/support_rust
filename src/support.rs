@@ -54,6 +54,17 @@ pub trait Strings {
     fn before_last<T: Display>(&self, search: T) -> String;
 
     ///
+    /// Convert the first character of the given string to lower-case.
+    ///
+    /// ```
+    /// use support::Strings;
+    ///
+    /// "Rust Support".lcfirst();
+    /// // "rust Support"
+    /// ```
+    fn lcfirst(&self) -> String;
+
+    ///
     /// Convert the given string to lower-case.
     ///
     /// ```
@@ -76,6 +87,17 @@ pub trait Strings {
     /// // "troppuS tsuR"
     /// ```
     fn reverse(&self) -> String;
+
+    ///
+    /// Convert the first character of the given string to upper-case.
+    ///
+    /// ```
+    /// use support::Strings;
+    ///
+    /// "rust support".ucfirst();
+    /// // "Rust support"
+    /// ```
+    fn ucfirst(&self) -> String;
 
     ///
     /// Convert the given string to upper-case.
@@ -143,12 +165,28 @@ impl Strings for str {
         }
     }
 
+    fn lcfirst(&self) -> String {
+        let mut c = self.chars();
+        match c.next() {
+            None => String::new(),
+            Some(f) => f.to_lowercase().collect::<String>() + c.as_str(),
+        }
+    }
+
     fn lower(&self) -> String {
         self.to_lowercase()
     }
 
     fn reverse(&self) -> String {
         self.chars().rev().collect()
+    }
+
+    fn ucfirst(&self) -> String {
+        let mut c = self.chars();
+        match c.next() {
+            None => String::new(),
+            Some(f) => f.to_uppercase().collect::<String>() + c.as_str(),
+        }
     }
 
     fn upper(&self) -> String {
@@ -173,12 +211,20 @@ impl Strings for String {
         self.as_str().before_last(search)
     }
 
+    fn lcfirst(&self) -> String {
+        self.as_str().lcfirst()
+    }
+
     fn lower(&self) -> String {
         self.as_str().lower()
     }
 
     fn reverse(&self) -> String {
         self.as_str().reverse()
+    }
+
+    fn ucfirst(&self) -> String {
+        self.as_str().ucfirst()
     }
 
     fn upper(&self) -> String {

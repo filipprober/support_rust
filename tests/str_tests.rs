@@ -66,6 +66,15 @@ mod str_tests {
     }
 
     #[test]
+    fn lcfirst() {
+        assert_eq!("", "".lcfirst());
+        assert_eq!("support", "Support".lcfirst());
+        assert_eq!("rust support", "Rust support".lcfirst());
+        assert_eq!("мама", "Мама".lcfirst());
+        assert_eq!("мама мыла раму", "Мама мыла раму".lcfirst());
+    }
+
+    #[test]
     fn lower() {
         assert_eq!("foo bar baz", "FOO BAR BAZ".lower());
         assert_eq!("foo bar baz", "foO bAr BaZ".lower());
@@ -76,6 +85,15 @@ mod str_tests {
         assert_eq!("FooBar", "raBooF".reverse());
         assert_eq!("Teniszütő", "őtüzsineT".reverse());
         assert_eq!("❤MultiByte☆", "☆etyBitluM❤".reverse());
+    }
+
+    #[test]
+    fn ucfirst() {
+        assert_eq!("", "".ucfirst());
+        assert_eq!("Support", "support".ucfirst());
+        assert_eq!("Rust support", "rust support".ucfirst());
+        assert_eq!("Мама", "мама".ucfirst());
+        assert_eq!("Мама мыла раму", "мама мыла раму".ucfirst());
     }
 
     #[test]
