@@ -84,6 +84,21 @@ mod str_tests {
     }
 
     #[test]
+    fn between_first() {
+        assert_eq!("abc", "abc".between_first("", "c"));
+        assert_eq!("abc", "abc".between_first("a", ""));
+        assert_eq!("abc", "abc".between_first("", ""));
+        assert_eq!("b", "abc".between_first("a", "c"));
+        assert_eq!("b", "dddabc".between_first("a", "c"));
+        assert_eq!("b", "abcddd".between_first("a", "c"));
+        assert_eq!("b", "dddabcddd".between_first("a", "c"));
+        assert_eq!("nn", "hannah".between_first("ha", "ah"));
+        assert_eq!("a", "[a]ab[b]".between_first("[", "]"));
+        assert_eq!("foo", "foofoobar".between_first("foo", "bar"));
+        assert_eq!("", "foobarbar".between_first("foo", "bar"));
+    }
+
+    #[test]
     fn lcfirst() {
         assert_eq!("", "".lcfirst());
         assert_eq!("support", "Support".lcfirst());

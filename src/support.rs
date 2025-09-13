@@ -65,6 +65,17 @@ pub trait Strings {
     fn between<T: Display>(&self, from: T, to: T) -> String;
 
     ///
+    /// Get the smallest possible portion of a string between two given values.
+    ///
+    /// ```
+    /// use support::Strings;
+    ///
+    /// "Rust Support".between_first("R", "t");
+    /// // "us"
+    /// ```
+    fn between_first<T: Display>(&self, from: T, to: T) -> String;
+
+    ///
     /// Convert the first character of the given string to lower-case.
     ///
     /// ```
@@ -187,6 +198,17 @@ impl Strings for str {
         self.after(from).before_last(to)
     }
 
+    fn between_first<T: Display>(&self, from: T, to: T) -> String {
+        let from = from.to_string();
+        let to = to.to_string();
+
+        if from.is_empty() || to.is_empty() {
+            return self.to_string();
+        }
+
+        self.after(from).before(to)
+    }
+
     fn lcfirst(&self) -> String {
         let mut c = self.chars();
         match c.next() {
@@ -235,6 +257,10 @@ impl Strings for String {
 
     fn between<T: Display>(&self, from: T, to: T) -> String {
         self.as_str().between(from, to)
+    }
+
+    fn between_first<T: Display>(&self, from: T, to: T) -> String {
+        self.as_str().between_first(from, to)
     }
 
     fn lcfirst(&self) -> String {

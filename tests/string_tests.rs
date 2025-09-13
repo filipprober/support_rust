@@ -84,6 +84,22 @@ mod string_tests {
     }
 
     #[test]
+    fn between_first() {
+        assert_eq!("abc", String::from("abc").between_first("", "c"));
+        assert_eq!("abc", String::from("abc").between_first("a", ""));
+        assert_eq!("abc", String::from("abc").between_first("", ""));
+        assert_eq!("b", String::from("abc").between_first("a", "c"));
+        assert_eq!("b", String::from("dddabc").between_first("a", "c"));
+        assert_eq!("b", String::from("abcddd").between_first("a", "c"));
+        assert_eq!("b", String::from("dddabcddd").between_first("a", "c"));
+        assert_eq!("nn", String::from("hannah").between_first("ha", "ah"));
+        assert_eq!("a", String::from("[a]ab[b]").between_first("[", "]"));
+        assert_eq!("foo", String::from("foofoobar").between_first("foo", "bar"));
+        assert_eq!("", String::from("foobarbar").between_first("foo", "bar"));
+    }
+
+
+    #[test]
     fn lcfirst() {
         assert_eq!("", String::from("").lcfirst());
         assert_eq!("support", String::from("Support").lcfirst());
