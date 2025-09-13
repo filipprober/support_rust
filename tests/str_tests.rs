@@ -122,10 +122,29 @@ mod str_tests {
     }
 
     #[test]
+    fn plural() {
+        assert_eq!("cats", "cat".plural());
+        assert_eq!("Dogs", "Dog".plural());
+        assert_eq!("Tomatoes", "Tomato".plural());
+        assert_eq!("UserGroups", "UserGroup".plural());
+        assert_eq!("ProductCategories", "ProductCategory".plural());
+    }
+
+
+    #[test]
     fn reverse() {
         assert_eq!("FooBar", "raBooF".reverse());
         assert_eq!("Teniszütő", "őtüzsineT".reverse());
         assert_eq!("❤MultiByte☆", "☆etyBitluM❤".reverse());
+    }
+
+    #[test]
+    fn singular() {
+        assert_eq!("cat", "cats".singular());
+        assert_eq!("Dog", "Dogs".singular());
+        assert_eq!("Tomato", "Tomatoes".singular());
+        assert_eq!("UserGroup", "UserGroups".singular());
+        assert_eq!("ProductCategory", "ProductCategories".singular());
     }
 
     #[test]

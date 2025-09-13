@@ -122,10 +122,28 @@ mod string_tests {
     }
 
     #[test]
+    fn plural() {
+        assert_eq!("cats", String::from("cat").plural());
+        assert_eq!("Dogs", String::from("Dog").plural());
+        assert_eq!("Tomatoes", String::from("Tomato").plural());
+        assert_eq!("UserGroups", String::from("UserGroup").plural());
+        assert_eq!("ProductCategories", String::from("ProductCategory").plural());
+    }
+
+    #[test]
     fn reverse() {
         assert_eq!("FooBar", String::from("raBooF").reverse());
         assert_eq!("Teniszütő", String::from("őtüzsineT").reverse());
         assert_eq!("❤MultiByte☆", String::from("☆etyBitluM❤").reverse());
+    }
+
+    #[test]
+    fn singular() {
+        assert_eq!("cat", String::from("cats").singular());
+        assert_eq!("Dog", String::from("Dogs").singular());
+        assert_eq!("Tomato", String::from("Tomatoes").singular());
+        assert_eq!("UserGroup", String::from("UserGroups").singular());
+        assert_eq!("ProductCategory", String::from("ProductCategories").singular());
     }
 
     #[test]
