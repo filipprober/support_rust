@@ -6,100 +6,100 @@ mod string_tests {
 
     #[test]
     fn after() {
-        assert_eq!("nah", "hannah".after("han"));
-        assert_eq!("nah", "hannah".after("n"));
-        assert_eq!("nah", "ééé hannah".after("han"));
-        assert_eq!("hannah", "hannah".after("xxxx"));
-        assert_eq!("hannah", "hannah".after(""));
-        assert_eq!("nah", "han0nah".after("0"));
-        assert_eq!("nah", "han0nah".after(0));
-        assert_eq!("nah", "han2nah".after(2));
+        assert_eq!("nah", String::from("hannah").after("han"));
+        assert_eq!("nah", String::from("hannah").after("n"));
+        assert_eq!("nah", String::from("ééé hannah").after("han"));
+        assert_eq!("hannah", String::from("hannah").after("xxxx"));
+        assert_eq!("hannah", String::from("hannah").after(""));
+        assert_eq!("nah", String::from("han0nah").after("0"));
+        assert_eq!("nah", String::from("han0nah").after(0));
+        assert_eq!("nah", String::from("han2nah").after(2));
     }
 
     #[test]
     fn after_last() {
-        assert_eq!("tte", "yvette".after_last("yve"));
-        assert_eq!("e", "yvette".after_last("t"));
-        assert_eq!("e", "ééé yvette".after_last("t"));
-        assert_eq!("", "yvette".after_last("tte"));
-        assert_eq!("yvette", "yvette".after_last("xxxx"));
-        assert_eq!("yvette", "yvette".after_last(""));
-        assert_eq!("te", "yv0et0te".after_last("0"));
-        assert_eq!("te", "yv0et0te".after_last(0));
-        assert_eq!("te", "yv2et2te".after_last(2));
-        assert_eq!("foo", "----foo".after_last("---"));
+        assert_eq!("tte", String::from("yvette").after_last("yve"));
+        assert_eq!("e", String::from("yvette").after_last("t"));
+        assert_eq!("e", String::from("ééé yvette").after_last("t"));
+        assert_eq!("", String::from("yvette").after_last("tte"));
+        assert_eq!("yvette", String::from("yvette").after_last("xxxx"));
+        assert_eq!("yvette", String::from("yvette").after_last(""));
+        assert_eq!("te", String::from("yv0et0te").after_last("0"));
+        assert_eq!("te", String::from("yv0et0te").after_last(0));
+        assert_eq!("te", String::from("yv2et2te").after_last(2));
+        assert_eq!("foo", String::from("----foo").after_last("---"));
     }
 
     #[test]
     fn before() {
-        assert_eq!("han", "hannah".before("nah"));
-        assert_eq!("ha", "hannah".before("n"));
-        assert_eq!("ééé", "ééé".before("han"));
-        assert_eq!("hannah", "hannah".before("xxxx"));
-        assert_eq!("hannah", "hannah".before(""));
-        assert_eq!("han", "han0nah".before("0"));
-        assert_eq!("han", "han0nah".before(0));
-        assert_eq!("han", "han2nah".before(2));
+        assert_eq!("han", String::from("hannah").before("nah"));
+        assert_eq!("ha", String::from("hannah").before("n"));
+        assert_eq!("ééé", String::from("ééé").before("han"));
+        assert_eq!("hannah", String::from("hannah").before("xxxx"));
+        assert_eq!("hannah", String::from("hannah").before(""));
+        assert_eq!("han", String::from("han0nah").before("0"));
+        assert_eq!("han", String::from("han0nah").before(0));
+        assert_eq!("han", String::from("han2nah").before(2));
         assert_eq!("", "".before(""));
-        assert_eq!("", "a".before("a"));
-        assert_eq!("", "a".before("a"));
-        assert_eq!("foo", "foo@bar.com".before("@"));
-        assert_eq!("foo", "foo@@bar.com".before("@"));
-        assert_eq!("", "@foo@bar.com".before("@"));
+        assert_eq!("", String::from("a").before("a"));
+        assert_eq!("", String::from("a").before("a"));
+        assert_eq!("foo", String::from("foo@bar.com").before("@"));
+        assert_eq!("foo", String::from("foo@@bar.com").before("@"));
+        assert_eq!("", String::from("@foo@bar.com").before("@"));
     }
 
     #[test]
     fn before_last() {
-        assert_eq!("yve", "yvette".before_last("tte"));
-        assert_eq!("yvet", "yvette".before_last("t"));
-        assert_eq!("ééé ", "ééé yvette".before_last("yve"));
-        assert_eq!("", "yvette".before_last("yve"));
-        assert_eq!("yvette", "yvette".before_last("xxxx"));
-        assert_eq!("yvette", "yvette".before_last(""));
-        assert_eq!("yv0et", "yv0et0te".before_last("0"));
-        assert_eq!("yv0et", "yv0et0te".before_last(0));
-        assert_eq!("yv2et", "yv2et2te".before_last(2));
-        assert_eq!("", "".before_last("test"));
-        assert_eq!("", "yvette".before_last("yvette"));
-        assert_eq!("support", "support package".before_last(" "));
-        assert_eq!("yvette", "yvette\tyv0et0te".before_last("\t"));
+        assert_eq!("yve", String::from("yvette").before_last("tte"));
+        assert_eq!("yvet", String::from("yvette").before_last("t"));
+        assert_eq!("ééé ", String::from("ééé yvette").before_last("yve"));
+        assert_eq!("", String::from("yvette").before_last("yve"));
+        assert_eq!("yvette", String::from("yvette").before_last("xxxx"));
+        assert_eq!("yvette", String::from("yvette").before_last(""));
+        assert_eq!("yv0et", String::from("yv0et0te").before_last("0"));
+        assert_eq!("yv0et", String::from("yv0et0te").before_last(0));
+        assert_eq!("yv2et", String::from("yv2et2te").before_last(2));
+        assert_eq!("", String::from("").before_last("test"));
+        assert_eq!("", String::from("yvette").before_last("yvette"));
+        assert_eq!("support", String::from("support package").before_last(" "));
+        assert_eq!("yvette", String::from("yvette\tyv0et0te").before_last("\t"));
     }
 
     #[test]
     fn lcfirst() {
-        assert_eq!("", "".lcfirst());
-        assert_eq!("support", "Support".lcfirst());
-        assert_eq!("rust support", "Rust support".lcfirst());
-        assert_eq!("мама", "Мама".lcfirst());
-        assert_eq!("мама мыла раму", "Мама мыла раму".lcfirst());
+        assert_eq!("", String::from("").lcfirst());
+        assert_eq!("support", String::from("Support").lcfirst());
+        assert_eq!("rust support", String::from("Rust support").lcfirst());
+        assert_eq!("мама", String::from("Мама").lcfirst());
+        assert_eq!("мама мыла раму", String::from("Мама мыла раму").lcfirst());
     }
 
     #[test]
     fn lower() {
-        assert_eq!("foo bar baz", "FOO BAR BAZ".lower());
-        assert_eq!("foo bar baz", "foO bAr BaZ".lower());
+        assert_eq!("foo bar baz", String::from("FOO BAR BAZ").lower());
+        assert_eq!("foo bar baz", String::from("foO bAr BaZ").lower());
     }
 
     #[test]
     fn reverse() {
-        assert_eq!("FooBar", "raBooF".reverse());
-        assert_eq!("Teniszütő", "őtüzsineT".reverse());
-        assert_eq!("❤MultiByte☆", "☆etyBitluM❤".reverse());
+        assert_eq!("FooBar", String::from("raBooF").reverse());
+        assert_eq!("Teniszütő", String::from("őtüzsineT").reverse());
+        assert_eq!("❤MultiByte☆", String::from("☆etyBitluM❤").reverse());
     }
 
     #[test]
     fn ucfirst() {
-        assert_eq!("", "".ucfirst());
-        assert_eq!("Support", "support".ucfirst());
-        assert_eq!("Rust support", "rust support".ucfirst());
-        assert_eq!("Мама", "мама".ucfirst());
-        assert_eq!("Мама мыла раму", "мама мыла раму".ucfirst());
+        assert_eq!("", String::from("").ucfirst());
+        assert_eq!("Support", String::from("support").ucfirst());
+        assert_eq!("Rust support", String::from("rust support").ucfirst());
+        assert_eq!("Мама", String::from("мама").ucfirst());
+        assert_eq!("Мама мыла раму", String::from("мама мыла раму").ucfirst());
     }
 
     #[test]
     fn upper() {
-        assert_eq!("FOO BAR BAZ", "foo bar baz".upper());
-        assert_eq!("FOO BAR BAZ", "fOo BaR bAz".upper());
+        assert_eq!("FOO BAR BAZ", String::from("foo bar baz").upper());
+        assert_eq!("FOO BAR BAZ", String::from("fOo BaR bAz").upper());
     }
 }
 
