@@ -54,6 +54,17 @@ pub trait Strings {
     fn before_last<T: Display>(&self, search: T) -> String;
 
     ///
+    /// Convert the given string to lower-case.
+    ///
+    /// ```
+    /// use support::Strings;
+    ///
+    /// "Rust Support".lower();
+    /// // "rust support"
+    /// ```
+    fn lower(&self) -> String;
+
+    ///
     /// Reverses the given string.
     ///
     /// # Usage
@@ -65,6 +76,17 @@ pub trait Strings {
     /// // "troppuS tsuR"
     /// ```
     fn reverse(&self) -> String;
+
+    ///
+    /// Convert the given string to upper-case.
+    ///
+    /// ```
+    /// use support::Strings;
+    ///
+    /// "Rust Support".upper();
+    /// // "RUST SUPPORT"
+    /// ```
+    fn upper(&self) -> String;
 }
 
 impl Strings for str {
@@ -121,8 +143,16 @@ impl Strings for str {
         }
     }
 
+    fn lower(&self) -> String {
+        self.to_lowercase()
+    }
+
     fn reverse(&self) -> String {
         self.chars().rev().collect()
+    }
+
+    fn upper(&self) -> String {
+        self.to_uppercase()
     }
 }
 
@@ -143,8 +173,16 @@ impl Strings for String {
         self.as_str().before_last(search)
     }
 
+    fn lower(&self) -> String {
+        self.as_str().lower()
+    }
+
     fn reverse(&self) -> String {
         self.as_str().reverse()
+    }
+
+    fn upper(&self) -> String {
+        self.to_uppercase()
     }
 }
 
