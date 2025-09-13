@@ -99,6 +99,14 @@ mod str_tests {
     }
 
     #[test]
+    fn kebab() {
+        assert_eq!("support-package", "SupportPackage".kebab());
+        assert_eq!("support-package", "Support Package".kebab());
+        assert_eq!("support❤-package", "Support ❤ Package".kebab());
+        assert_eq!("", "".kebab());
+    }
+
+    #[test]
     fn lcfirst() {
         assert_eq!("", "".lcfirst());
         assert_eq!("support", "Support".lcfirst());

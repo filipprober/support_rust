@@ -77,6 +77,19 @@ pub trait Strings {
     fn between_first<T: Display>(&self, from: T, to: T) -> String;
 
     ///
+    /// Convert a string to kebab case.
+    ///
+    /// # Usage
+    ///
+    /// ```
+    /// use support::Strings;
+    ///
+    /// "Rust Support".kebab();
+    /// // "rust-support"
+    /// ```
+    fn kebab(&self) -> String;
+
+    ///
     /// Convert the first character of the given string to lower-case.
     ///
     /// ```
@@ -236,6 +249,10 @@ impl Strings for str {
         self.after(from).before(to)
     }
 
+    fn kebab(&self) -> String {
+        self.snake_with_delimeter("-")
+    }
+
     fn lcfirst(&self) -> String {
         let mut c = self.chars();
         match c.next() {
@@ -311,6 +328,10 @@ impl Strings for String {
 
     fn between_first<T: Display>(&self, from: T, to: T) -> String {
         self.as_str().between_first(from, to)
+    }
+
+    fn kebab(&self) -> String {
+        self.as_str().kebab()
     }
 
     fn lcfirst(&self) -> String {

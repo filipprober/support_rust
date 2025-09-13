@@ -98,6 +98,13 @@ mod string_tests {
         assert_eq!("", String::from("foobarbar").between_first("foo", "bar"));
     }
 
+    #[test]
+    fn kebab() {
+        assert_eq!("support-package", String::from("SupportPackage").kebab());
+        assert_eq!("support-package", String::from("Support Package").kebab());
+        assert_eq!("support❤-package", String::from("Support ❤ Package").kebab());
+        assert_eq!("", String::from("").kebab());
+    }
 
     #[test]
     fn lcfirst() {
