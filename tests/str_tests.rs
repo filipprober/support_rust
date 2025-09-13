@@ -121,6 +121,30 @@ mod str_tests {
     }
 
     #[test]
+    fn snake() {
+        assert_eq!("r_u_s_t_support", "RUSTSupport".snake());
+        assert_eq!("rust_support", "RustSupport".snake());
+        assert_eq!("rust_support", "Rust   Support".snake());
+
+        assert_eq!("foo-bar", "foo-bar".snake());
+        assert_eq!("foo-_bar", "Foo-Bar".snake());
+        assert_eq!("foo__bar", "Foo_Bar".snake());
+        assert_eq!("żółtałódka", "ŻółtaŁódka".snake());
+    }
+
+    #[test]
+    fn snake_with_delimeter() {
+        assert_eq!("r-u-s-t-support", "RUSTSupport".snake_with_delimeter("-"));
+        assert_eq!("rust/support", "RustSupport".snake_with_delimeter("/"));
+        assert_eq!("rust&support", "Rust   Support".snake_with_delimeter("&"));
+
+        assert_eq!("foo-bar", "foo-bar".snake_with_delimeter("."));
+        assert_eq!("foo-.bar", "Foo-Bar".snake_with_delimeter("."));
+        assert_eq!("foo_.bar", "Foo_Bar".snake_with_delimeter("."));
+        assert_eq!("żółtałódka", "ŻółtaŁódka".snake_with_delimeter("."));
+    }
+
+    #[test]
     fn ucfirst() {
         assert_eq!("", "".ucfirst());
         assert_eq!("Support", "support".ucfirst());

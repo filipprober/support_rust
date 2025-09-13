@@ -122,6 +122,30 @@ mod string_tests {
     }
 
     #[test]
+    fn snake() {
+        assert_eq!("r_u_s_t_support", String::from("RUSTSupport").snake());
+        assert_eq!("rust_support", String::from("RustSupport").snake());
+        assert_eq!("rust_support", String::from("Rust   Support").snake());
+
+        assert_eq!("foo-bar", String::from("foo-bar").snake());
+        assert_eq!("foo-_bar", String::from("Foo-Bar").snake());
+        assert_eq!("foo__bar", String::from("Foo_Bar").snake());
+        assert_eq!("żółtałódka", String::from("ŻółtaŁódka").snake());
+    }
+
+    #[test]
+    fn snake_with_delimeter() {
+        assert_eq!("r-u-s-t-support", String::from("RUSTSupport").snake_with_delimeter("-"));
+        assert_eq!("rust/support", String::from("RustSupport").snake_with_delimeter("/"));
+        assert_eq!("rust&support", String::from("Rust   Support").snake_with_delimeter("&"));
+
+        assert_eq!("foo-bar", String::from("foo-bar").snake_with_delimeter("."));
+        assert_eq!("foo-.bar", String::from("Foo-Bar").snake_with_delimeter("."));
+        assert_eq!("foo_.bar", String::from("Foo_Bar").snake_with_delimeter("."));
+        assert_eq!("żółtałódka", String::from("ŻółtaŁódka").snake_with_delimeter("."));
+    }
+
+    #[test]
     fn ucfirst() {
         assert_eq!("", String::from("").ucfirst());
         assert_eq!("Support", String::from("support").ucfirst());

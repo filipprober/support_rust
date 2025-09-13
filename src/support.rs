@@ -1,4 +1,5 @@
 use std::fmt::Display;
+use regex::Regex;
 
 pub trait Strings {
     ///
@@ -109,6 +110,32 @@ pub trait Strings {
     /// // "troppuS tsuR"
     /// ```
     fn reverse(&self) -> String;
+
+    ///
+    /// Convert a string to snake case.
+    ///
+    /// # Usage
+    ///
+    /// ```
+    /// use support::Strings;
+    ///
+    /// "Rust Support".snake();
+    /// // "rust_support"
+    /// ```
+    fn snake(&self) -> String;
+
+    ///
+    /// Convert a string to snake case with the specified delimeter.
+    ///
+    /// # Usage
+    ///
+    /// ```
+    /// use support::Strings;
+    ///
+    /// "Rust Support".snake_with_delimeter("-");
+    /// // "rust-support"
+    /// ```
+    fn snake_with_delimeter(&self, delimiter: &str) -> String;
 
     ///
     /// Convert the first character of the given string to upper-case.
@@ -225,6 +252,29 @@ impl Strings for str {
         self.chars().rev().collect()
     }
 
+    fn snake(&self) -> String {
+        self.snake_with_delimeter("_")
+    }
+
+    fn snake_with_delimeter(&self, delimiter: &str) -> String {
+        if self.chars().any(|c| c.is_uppercase()) {
+            let whitespace_regex = Regex::new(r"\s+").unwrap();
+            let no_whitespace = whitespace_regex.replace_all(self, "");
+
+            let result = no_whitespace.chars().enumerate().fold(String::new(), |mut acc, (i, c)| {
+                if i > 0 && c.is_ascii_uppercase() {
+                    acc.push_str(delimiter);
+                }
+                acc.push(c);
+                acc
+            });
+
+            result.to_lowercase()
+        } else {
+            self.to_string()
+        }
+    }
+
     fn ucfirst(&self) -> String {
         let mut c = self.chars();
         match c.next() {
@@ -273,6 +323,14 @@ impl Strings for String {
 
     fn reverse(&self) -> String {
         self.as_str().reverse()
+    }
+
+    fn snake(&self) -> String {
+        self.as_str().snake()
+    }
+
+    fn snake_with_delimeter(&self, delimiter: &str) -> String {
+        self.as_str().snake_with_delimeter(delimiter)
     }
 
     fn ucfirst(&self) -> String {
