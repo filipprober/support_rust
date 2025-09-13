@@ -153,6 +153,16 @@ mod string_tests {
     }
 
     #[test]
+    fn take() {
+        assert_eq!("ab", String::from("abcdef").take(2));
+        assert_eq!("ef", String::from("abcdef").take(-2));
+        assert_eq!("", String::from("abcdef").take(0));
+        assert_eq!("", String::from("").take(2));
+        assert_eq!("abcdef", String::from("abcdef").take(10));
+        assert_eq!("ü", String::from("üöä").take(1));
+    }
+
+    #[test]
     fn ucfirst() {
         assert_eq!("", String::from("").ucfirst());
         assert_eq!("Support", String::from("support").ucfirst());

@@ -151,6 +151,22 @@ pub trait Strings {
     fn snake_with_delimeter(&self, delimiter: &str) -> String;
 
     ///
+    /// Take the first or last `limit` characters of a string.
+    ///
+    /// # Usage
+    ///
+    /// ```
+    /// use support::Strings;
+    ///
+    /// "Rust Support".take(4);
+    /// // "Rust"
+    ///
+    /// "Rust Support".take(-7);
+    /// // "Support"
+    /// ```
+    fn take(&self, limit: isize) -> String;
+
+    ///
     /// Convert the first character of the given string to upper-case.
     ///
     /// ```
@@ -292,6 +308,17 @@ impl Strings for str {
         }
     }
 
+    fn take(&self, limit: isize) -> String {
+        if limit < 0 {
+            let count = (-limit) as usize;
+            let chars: Vec<char> = self.chars().collect();
+            let start_idx = if count >= chars.len() { 0 } else { chars.len() - count };
+            chars[start_idx..].iter().collect()
+        } else {
+            self.chars().take(limit as usize).collect()
+        }
+    }
+
     fn ucfirst(&self) -> String {
         let mut c = self.chars();
         match c.next() {
@@ -352,6 +379,10 @@ impl Strings for String {
 
     fn snake_with_delimeter(&self, delimiter: &str) -> String {
         self.as_str().snake_with_delimeter(delimiter)
+    }
+
+    fn take(&self, limit: isize) -> String {
+        self.as_str().take(limit)
     }
 
     fn ucfirst(&self) -> String {

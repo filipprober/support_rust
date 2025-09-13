@@ -153,6 +153,16 @@ mod str_tests {
     }
 
     #[test]
+    fn take() {
+        assert_eq!("ab", "abcdef".take(2));
+        assert_eq!("ef", "abcdef".take(-2));
+        assert_eq!("", "abcdef".take(0));
+        assert_eq!("", "".take(2));
+        assert_eq!("abcdef", "abcdef".take(10));
+        assert_eq!("ü", "üöä".take(1));
+    }
+
+    #[test]
     fn ucfirst() {
         assert_eq!("", "".ucfirst());
         assert_eq!("Support", "support".ucfirst());
