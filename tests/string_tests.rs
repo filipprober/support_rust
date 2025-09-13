@@ -65,11 +65,24 @@ mod string_tests {
         assert_eq!("yvette", "yvette\tyv0et0te".before_last("\t"));
     }
 
+
+    #[test]
+    fn lower() {
+        assert_eq!("foo bar baz", "FOO BAR BAZ".lower());
+        assert_eq!("foo bar baz", "foO bAr BaZ".lower());
+    }
+
     #[test]
     fn reverse() {
         assert_eq!("FooBar", "raBooF".reverse());
         assert_eq!("Teniszütő", "őtüzsineT".reverse());
         assert_eq!("❤MultiByte☆", "☆etyBitluM❤".reverse());
+    }
+
+    #[test]
+    fn upper() {
+        assert_eq!("FOO BAR BAZ", "foo bar baz".upper());
+        assert_eq!("FOO BAR BAZ", "fOo BaR bAz".upper());
     }
 }
 
