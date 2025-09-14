@@ -178,6 +178,19 @@ pub trait Strings {
     fn snake_with_delimeter(&self, delimiter: &str) -> String;
 
     ///
+    /// Convert a value to studly caps case.
+    ///
+    /// # Usage
+    ///
+    /// ```
+    /// use support::Strings;
+    ///
+    /// "fooBar".studly();
+    /// // "FooBar"
+    /// ```
+    fn studly(&self) -> String;
+
+    ///
     /// Take the first or last `limit` characters of a string.
     ///
     /// # Usage
@@ -343,6 +356,24 @@ impl Strings for str {
         }
     }
 
+    fn studly(&self) -> String {
+        let normalized = self
+            .replace('-', " ")
+            .replace('_', " ");
+
+        normalized
+            .split_whitespace()
+            .map(|word| {
+                let mut chars = word.chars();
+                match chars.next() {
+                    None => String::new(),
+                    Some(first) => first.to_uppercase().collect::<String>() + chars.as_str(),
+                }
+            })
+            .collect::<Vec<String>>()
+            .join("")
+    }
+
     fn take(&self, limit: isize) -> String {
         if limit < 0 {
             let count = (-limit) as usize;
@@ -422,6 +453,10 @@ impl Strings for String {
 
     fn snake_with_delimeter(&self, delimiter: &str) -> String {
         self.as_str().snake_with_delimeter(delimiter)
+    }
+
+    fn studly(&self) -> String {
+        self.as_str().studly()
     }
 
     fn take(&self, limit: isize) -> String {

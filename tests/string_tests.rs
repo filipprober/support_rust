@@ -171,6 +171,21 @@ mod string_tests {
     }
 
     #[test]
+    fn studly() {
+        assert_eq!("RustSUPPORTLibrary", String::from("rust_s_u_p_p_o_r_t_library").studly());
+        assert_eq!("RustSupportLibrary", String::from("rust_support_library").studly());
+        assert_eq!("RustSupporTLibrary", String::from("rust-supporT-library").studly());
+        assert_eq!("RustSupportLibrary", String::from("rust  -_- support  -_- library  ").studly());
+
+        assert_eq!("FooBar", String::from("fooBar").studly());
+        assert_eq!("FooBar", String::from("foo_bar").studly());
+        assert_eq!("FooBarBaz", String::from("foo-barBaz").studly());
+        assert_eq!("FooBarBaz", String::from("foo-bar_baz").studly());
+
+        assert_eq!("ÖffentlicheÜberraschungen", String::from("öffentliche-überraschungen").studly());
+    }
+
+    #[test]
     fn take() {
         assert_eq!("ab", String::from("abcdef").take(2));
         assert_eq!("ef", String::from("abcdef").take(-2));

@@ -172,6 +172,21 @@ mod str_tests {
     }
 
     #[test]
+    fn studly() {
+        assert_eq!("RustSUPPORTLibrary", "rust_s_u_p_p_o_r_t_library".studly());
+        assert_eq!("RustSupportLibrary", "rust_support_library".studly());
+        assert_eq!("RustSupporTLibrary", "rust-supporT-library".studly());
+        assert_eq!("RustSupportLibrary", "rust  -_- support  -_- library  ".studly());
+
+        assert_eq!("FooBar", "fooBar".studly());
+        assert_eq!("FooBar", "foo_bar".studly());
+        assert_eq!("FooBarBaz", "foo-barBaz".studly());
+        assert_eq!("FooBarBaz", "foo-bar_baz".studly());
+
+        assert_eq!("ÖffentlicheÜberraschungen", "öffentliche-überraschungen".studly());
+    }
+
+    #[test]
     fn take() {
         assert_eq!("ab", "abcdef".take(2));
         assert_eq!("ef", "abcdef".take(-2));
