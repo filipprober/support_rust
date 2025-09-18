@@ -113,6 +113,17 @@ pub trait Strings {
     fn lower(&self) -> String;
 
     ///
+    /// Remove all whitespace from the beginning of a string.
+    ///
+    /// ```
+    /// use support::Strings;
+    ///
+    /// "   Rust   ".ltrim();
+    /// // "Rust   "
+    /// ```
+    fn ltrim(&self) -> String;
+
+    ///
     /// Get the plural form of an English word.
     ///
     /// # Usage
@@ -321,6 +332,10 @@ impl Strings for str {
         self.to_lowercase()
     }
 
+    fn ltrim(&self) -> String {
+        self.trim_start().to_string()
+    }
+
     fn plural(&self) -> String {
         Inflector::pluralize(self)
     }
@@ -433,6 +448,10 @@ impl Strings for String {
 
     fn lower(&self) -> String {
         self.as_str().lower()
+    }
+
+    fn ltrim(&self) -> String {
+        self.as_str().ltrim()
     }
 
     fn plural(&self) -> String {

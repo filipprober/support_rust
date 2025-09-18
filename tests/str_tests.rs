@@ -122,6 +122,16 @@ mod str_tests {
     }
 
     #[test]
+    fn ltrim() {
+        assert_eq!("foo   bar ", " foo   bar ".ltrim());
+        assert_eq!("123   ", "   123   ".ltrim());
+        assert_eq!("だ", "だ".ltrim());
+        assert_eq!("ム", "ム".ltrim());
+        assert_eq!("だ   ", "   だ   ".ltrim());
+        assert_eq!("ム   ", "   ム   ".ltrim());
+    }
+
+    #[test]
     fn plural() {
         assert_eq!("cats", "cat".plural());
         assert_eq!("Dogs", "Dog".plural());

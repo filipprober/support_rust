@@ -122,6 +122,16 @@ mod string_tests {
     }
 
     #[test]
+    fn ltrim() {
+        assert_eq!("foo   bar ", String::from(" foo   bar ").ltrim());
+        assert_eq!("123   ", String::from("   123   ").ltrim());
+        assert_eq!("だ", String::from("だ").ltrim());
+        assert_eq!("ム", String::from("ム").ltrim());
+        assert_eq!("だ   ", String::from("   だ   ").ltrim());
+        assert_eq!("ム   ", String::from("   ム   ").ltrim());
+    }
+
+    #[test]
     fn plural() {
         assert_eq!("cats", String::from("cat").plural());
         assert_eq!("Dogs", String::from("Dog").plural());
