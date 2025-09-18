@@ -1,6 +1,11 @@
 # Release Notes for 0.x
 
-## [Unreleased](https://github.com/filipprober/support_rust/compare/v0.3.1...0.x)
+## [Unreleased](https://github.com/support-rust/package/compare/v0.4.0...0.x)
+
+## 0.4.0
+
+- Added `String.ltrim()`
+- Added `String.rtrim()`
 
 ## 0.3.1
 

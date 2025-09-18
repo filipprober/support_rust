@@ -12,4 +12,4 @@ cargo add support
 
 ## License
 
-Support is licensed under the MIT License. See the [LICENSE](https://github.com/filipprober/support_rust/blob/0.x/LICENSE) file for details.
+Support is licensed under the MIT License. See the [LICENSE](https://github.com/support-rust/package/blob/0.x/LICENSE) file for details.
