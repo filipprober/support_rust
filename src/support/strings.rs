@@ -104,6 +104,8 @@ pub trait Strings {
     ///
     /// Convert the given string to lower-case.
     ///
+    /// # Usage
+    ///
     /// ```
     /// use support::Strings;
     ///
@@ -148,6 +150,19 @@ pub trait Strings {
     /// // "troppuS tsuR"
     /// ```
     fn reverse(&self) -> String;
+
+    ///
+    /// Remove all whitespace from the end of a string.
+    ///
+    /// # Usage
+    ///
+    /// ```
+    /// use support::Strings;
+    ///
+    /// "   Rust   ".ltrim();
+    /// // "   Rust"
+    /// ```
+    fn rtrim(&self) -> String;
 
     ///
     /// Get the singular form of an English word.
@@ -344,6 +359,10 @@ impl Strings for str {
         self.chars().rev().collect()
     }
 
+    fn rtrim(&self) -> String {
+        self.trim_end().to_string()
+    }
+
     fn singular(&self) -> String {
         Inflector::singularize(self)
     }
@@ -460,6 +479,10 @@ impl Strings for String {
 
     fn reverse(&self) -> String {
         self.as_str().reverse()
+    }
+
+    fn rtrim(&self) -> String {
+        self.as_str().rtrim()
     }
 
     fn singular(&self) -> String {

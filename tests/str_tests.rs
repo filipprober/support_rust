@@ -140,12 +140,21 @@ mod str_tests {
         assert_eq!("ProductCategories", "ProductCategory".plural());
     }
 
-
     #[test]
     fn reverse() {
         assert_eq!("FooBar", "raBooF".reverse());
         assert_eq!("Teniszütő", "őtüzsineT".reverse());
         assert_eq!("❤MultiByte☆", "☆etyBitluM❤".reverse());
+    }
+
+    #[test]
+    fn rtrim() {
+        assert_eq!(" foo   bar", " foo   bar ".rtrim());
+        assert_eq!("   123", "   123   ".rtrim());
+        assert_eq!("だ", "だ".rtrim());
+        assert_eq!("ム", "ム".rtrim());
+        assert_eq!("   だ", "   だ   ".rtrim());
+        assert_eq!("ム", "ム   ".rtrim());
     }
 
     #[test]

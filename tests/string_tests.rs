@@ -148,6 +148,16 @@ mod string_tests {
     }
 
     #[test]
+    fn rtrim() {
+        assert_eq!(" foo   bar", String::from(" foo   bar ").rtrim());
+        assert_eq!("   123", String::from("   123   ").rtrim());
+        assert_eq!("だ", String::from("だ").rtrim());
+        assert_eq!("ム", String::from("ム").rtrim());
+        assert_eq!("   だ", String::from("   だ   ").rtrim());
+        assert_eq!("ム", String::from("ム   ").rtrim());
+    }
+
+    #[test]
     fn singular() {
         assert_eq!("cat", String::from("cats").singular());
         assert_eq!("Dog", String::from("Dogs").singular());
